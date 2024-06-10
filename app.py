@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 
 # URL da sua comunidade do Invision e chave da API
 INVISION_API_URL = "https://i330926.invisionservice.com/api"
-API_KEY = "61dcc9f6deee9849db0f1515baf2736c"  # Nova chave da API
+API_KEY = "2bdddead3b91a5c9ebc7f8ff96d02104"  # Nova chave da API
 
 @app.route('/webhook', methods=['POST'])
 def webhook():

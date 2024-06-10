@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 # URL da sua comunidade do Invision e chave da API
 INVISION_API_URL = "https://i330926.invisionservice.com/api"
-API_KEY = "2bdddead3b91a5c9ebc7f8ff96d02104"  # Nova chave da API
+API_KEY = "ddb3f5cc979f34f1a601242429ce015d"  # Nova chave da API
 
 def generate_random_password(length=12):
     # Caracteres possíveis para a senha

@@ -16,23 +16,31 @@ def webhook():
         buyer_email = data['data']['buyer']['email']
         buyer_name = data['data']['buyer']['name']
 
-        # Dados necessários para criar um membro na comunidade do Invision
-        member_data = {
+        # Log dos dados recebidos
+        app.logger.info(f"Dados do comprador: {buyer_name}, {buyer_email}")
+
+        # Fazer uma requisição para a API do Invision para criar um novo membro
+        headers = {
+            'Authorization': f'Bearer {API_KEY}',
+            'Content-Type': 'application/json'
+        }
+        payload = {
+            'name': buyer_name,
             'email': buyer_email,
-            'username': buyer_name,
-            # Adicione outros dados do comprador, se necessário
+            'password': 'um_password_seguro',  # Certifique-se de escolher uma senha adequada
         }
 
-        # Enviar uma solicitação POST para a API do Invision para criar o membro
-        response = requests.post(f"{INVISION_API_URL}/members", json=member_data, headers={"Authorization": f"Bearer {API_KEY}"})
-        
-        if response.status_code == 201:
-            return jsonify({'message': 'Membro criado com sucesso na comunidade do Invision'}), 200
+        response = requests.post(f'{INVISION_API_URL}/core/members', json=payload, headers=headers)
+
+        # Log da resposta da API
+        app.logger.info(f"Resposta da API do Invision: {response.status_code}, {response.text}")
+
+        if response.status_code == 200:
+            return jsonify({'message': 'Membro criado com sucesso'}), 200
         else:
-            return jsonify({'error': 'Falha ao criar membro na comunidade do Invision'}), 500
+            return jsonify({'message': 'Falha ao criar membro', 'details': response.json()}), 400
 
     return jsonify({'message': 'Evento não suportado'}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
-
+    app.run(debug=True)

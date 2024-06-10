@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # URL da sua comunidade do Invision e chave da API
 INVISION_API_URL = "https://i330926.invisionservice.com/api"
-API_KEY = "dff17ac146cf8b4ce9b488362d86d974"
+API_KEY = "61dcc9f6deee9849db0f1515baf2736c"
 
 @app.route('/webhook', methods=['POST'])
 def webhook():

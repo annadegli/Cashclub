@@ -22,7 +22,7 @@ def webhook():
         buyer_email = data['data']['buyer']['email']
         buyer_name = data['data']['buyer']['name']
 
-        # Dados do usuário a ser criado
+        # Dados do usuário a serem criados
         user_data = {
             "name": buyer_name,
             "email": buyer_email,
@@ -51,3 +51,4 @@ def webhook():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

@@ -11,13 +11,10 @@ logging.basicConfig(level=logging.INFO)
 
 # URL da sua comunidade do Invision e chave da API
 INVISION_API_URL = "https://i330926.invisionservice.com/api"
-API_KEY = "ddb3f5cc979f34f1a601242429ce015d"  # Nova chave da API
+API_KEY = "4563143c988b1cbe607c6777705493f8" 
 
 def generate_random_password(length=12):
-    # Caracteres possíveis para a senha
     characters = string.ascii_letters + string.digits + string.punctuation
-
-    # Gera a senha aleatória
     password = ''.join(random.choice(characters) for i in range(length))
 
     return password
@@ -33,10 +30,8 @@ def webhook():
         buyer_email = data['data']['buyer']['email']
         buyer_name = data['data']['buyer']['name']
 
-        # Gera uma senha aleatória
-        password = generate_random_password()
 
-        # Dados do usuário a serem criados
+        password = generate_random_password()
         user_data = {
             "name": buyer_name,
             "email": buyer_email,
@@ -51,7 +46,6 @@ def webhook():
 
         logging.info(f"Criando usuário no Invision: {user_data}")
 
-        # Fazendo a solicitação POST para criar o usuário
         response = requests.post(f"{INVISION_API_URL}/core/members", json=user_data, headers=headers)
 
         logging.info(f"Resposta da API do Invision: {response.status_code} - {response.text}")
